@@ -2,7 +2,7 @@ import random
 
 pieceScore = {'K':0, 'Q':9, 'R':5, 'B':3, 'N':3, 'P':1}
 
-# Knight score
+
 knightScores = [
     [1, 1, 1, 1, 1, 1, 1, 1],
     [1, 2, 2, 2, 2, 2, 2, 1],
@@ -13,7 +13,7 @@ knightScores = [
     [1, 2, 2, 2, 2, 2, 2, 1],
     [1, 1, 1, 1, 1, 1, 1, 1],]
 
-# Bishop score
+
 bishopScores = [
     [4, 3, 2, 1, 1, 2, 3, 4],
     [3, 4, 3, 2, 2, 3, 4, 3],
@@ -24,7 +24,7 @@ bishopScores = [
     [3, 4, 3, 2, 2, 3, 4, 3],
     [4, 3, 2, 1, 1, 2, 3, 4],]
 
-# Queen score
+
 queenScores = [
     [1, 1, 1, 3, 1, 1, 1, 1],
     [1, 2, 3, 3, 3, 1, 1, 1],
@@ -35,7 +35,7 @@ queenScores = [
     [1, 2, 3, 3, 3, 1, 1, 1],
     [1, 1, 1, 3, 1, 1, 1, 1],]
 
-# Rock score
+
 rockScores = [
     [4, 3, 4, 4, 4, 4, 3, 4],
     [4, 4, 4, 4, 4, 4, 4, 4],
@@ -46,7 +46,7 @@ rockScores = [
     [4, 4, 4, 4, 4, 4, 4, 4],
     [4, 3, 4, 4, 4, 4, 3, 4],]
 
-# White pawn score
+
 whitePawnScores = [
     [8, 8, 8, 8, 8, 8, 8, 8],
     [8, 8, 8, 8, 8, 8, 8, 8],
@@ -57,7 +57,7 @@ whitePawnScores = [
     [1, 1, 1, 0, 0, 1, 1, 1],
     [0, 0, 0, 0, 0, 0, 0, 0],]
 
-# Black pawn score
+
 blackPawnScores = [
     [0, 0, 0, 0, 0, 0, 0, 0],
     [1, 1, 1, 0, 0, 1, 1, 1],
@@ -75,15 +75,11 @@ CHECKMATE = 1000
 STALEMATE = 0
 DEPTH = 3
 
-'''
-Picks and returns a random move.
-'''
+
 def findRandomMove(validMoves):
     return validMoves[random.randint(0, len(validMoves)-1)]
 
-'''
-Find the best move based on material alone. Minimax algorithms without recursion
-'''
+
 def findBestMoveThings(gs,validMoves):
     turnMultiplier = 1 if gs.whiteToMove else -1
 
@@ -118,9 +114,7 @@ def findBestMoveThings(gs,validMoves):
         gs.undoMove()
     return bestPlayerMove
 
-'''
-Helper method to make first recursive call
-'''
+
 def findBestMove(gs, validMoves, returnQueue):
     global nextMove
     global counter
@@ -133,9 +127,7 @@ def findBestMove(gs, validMoves, returnQueue):
     print(counter)
     returnQueue.put(nextMove)
 
-'''
-Find the best move based on Minimax algorithms evaluate by material alone.
-'''
+
 def findMoveMinMax(gs, validMoves, depth, whiteToMove):
     global nextMove
     if depth == 0:
@@ -167,9 +159,7 @@ def findMoveMinMax(gs, validMoves, depth, whiteToMove):
             gs.undoMove()
         return minScore
 
-'''
-Find move nega max
-'''
+
 def findMoveNegaMax(gs, validMoves, depth, turnMultiplier):
     global nextMove
     global counter
@@ -189,11 +179,7 @@ def findMoveNegaMax(gs, validMoves, depth, turnMultiplier):
         gs.undoMove()
     return maxScore
 
-'''
-Find move nega max with alpha-beta
-Alpha is for the maximum possible
-Beta is minimum
-'''
+
 def findMoveNegaMaxAlphaBeta(gs, validMoves, depth, alpha, beta, turnMultiplier):
     global nextMove
     global counter
@@ -222,9 +208,7 @@ def findMoveNegaMaxAlphaBeta(gs, validMoves, depth, alpha, beta, turnMultiplier)
             break
     return maxScore
 
-'''
-A positive score is good for white, a negative score is good for black
-'''
+
 def scoreBoard(gs):
     if gs.checkMate:
         if gs.whiteToMove:
@@ -257,9 +241,7 @@ def scoreBoard(gs):
 
     return score
 
-'''
-Score the board based on material.
-'''
+
 def scoreMaterial(board):
     score = 0
     for row in board:
