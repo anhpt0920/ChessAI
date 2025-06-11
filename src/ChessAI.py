@@ -73,7 +73,7 @@ piecePositionScores = {'Q':queenScores, 'R':rockScores, 'B':bishopScores, 'N':kn
 
 CHECKMATE = 1000
 STALEMATE = 0
-DEPTH = 3
+DEPTH = 2
 
 
 def findRandomMove(validMoves):
